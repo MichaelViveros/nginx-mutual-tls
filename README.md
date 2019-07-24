@@ -14,7 +14,7 @@ This image contains an NGINX server configured with Mutual TLS which will allow 
 * `VERIFY_DEPTH` (optional) - maximum client certificate verify depth, defaults to `1` which will allow client certificates signed by one intermediate CA, set to `0` to only allow client certificates signed by the trusted root CA
 3. Run it:
 ```
-docker run -p 443:443 --env ALLOWED_CLIENT_S_DN='CN=webhooks.pagerduty.com,O=PagerDuty Inc,L=San Francisco,ST=California,C=US' -v `pwd`/certs/:/etc/nginx/conf.d/certs mviveros/nginx-mutual-tls
+docker run -p 443:443 --env ALLOWED_CLIENT_S_DN='CN=example.com,O=Example Inc,L=Toronto,ST=Ontario,C=CA' -v `pwd`/certs/:/etc/nginx/conf.d/certs mviveros/nginx-mutual-tls
 ```
 
 ## Test
@@ -24,8 +24,8 @@ curl -v --cert client.crt --key client.key --cacert ca_server.crt https://localh
 ```
 
 ## Links
-* To see which specific configs were used to setup client authentication, check out commit [3d8b6cd](https://github.com/MichaelViveros/apache-mutual-tls/commit/3d8b6cd77cc04a1e4ad4807039cb991af1aa04bc)
-* Docs - https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html#accesscontrol
+* To see which specific configs were used to setup client authentication, check out commit [ee2e60e](https://github.com/MichaelViveros/nginx-mutual-tls/commit/ee2e60ec918e4ec862bc6c253e810a811f54388d)
+* Docs - http://nginx.org/en/docs/http/ngx_http_ssl_module.html
 
 ## Coming Soon
 * support for adding a proxy header for client subject domain name
